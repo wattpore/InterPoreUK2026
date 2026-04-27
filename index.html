@@ -173,7 +173,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+  .nav-links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; justify-content: center; padding: 0.6rem 0; }
+  .nav-links a { font-size: 0.75rem; }ß
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .dates-grid { grid-template-columns: 1fr 1fr; }
       .venue-grid { grid-template-columns: 1fr; }
