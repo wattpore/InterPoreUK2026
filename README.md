@@ -2,7 +2,7 @@
 
 9th Annual Conference on Porous Media · 1–2 September 2026 · Heriot-Watt University, Edinburgh
 
-link --- https://poriyalar.github.io/InterPoreUK2026/
+link --- https://wattpore.github.io/InterPoreUK2026/
 
 ---
 
@@ -25,7 +25,6 @@ Search the file for `TODO` comments — there are 5:
 | About section CTA | Same abstract submission URL |
 | Registration "Register Now" button | Real registration URL |
 | Venue travel info | More specific transport details |
-| Footer contact link | Real contact email address |
 
 Also consider:
 - Replacing the map placeholder with an embedded Google Maps iframe
