@@ -701,6 +701,90 @@
     /* ── SCROLL REVEAL ── */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+
+    .abstract-link {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .abstract-link:hover {
+      color: var(--gold-light);
+    }
+
+    .abstract-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(10, 31, 51, 0.72);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .abstract-modal.active {
+      display: flex;
+    }
+
+    .abstract-modal-content {
+      position: relative;
+      background: var(--offwhite);
+      color: var(--text-dark);
+      max-width: 760px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .abstract-modal-content h3 {
+      margin-bottom: 1.4rem;
+      color: var(--navy);
+      font-size: 1.6rem;
+    }
+
+    .abstract-modal-content p {
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    .abstract-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      border: none;
+      background: transparent;
+      color: var(--navy);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .abstract-close:hover {
+      color: var(--teal);
+    }
+
+    @media (max-width: 600px) {
+      .abstract-modal-content {
+        padding: 2rem 1.4rem;
+      }
+
+      .abstract-modal-content p {
+        text-align: left;
+      }
+    }
   </style>
 </head>
 <body>
@@ -845,6 +929,9 @@
           <div class="speaker-name">Prof. Lyesse Laloui</div>
           <div class="speaker-affil">EPFL, Lausanne, Switzerland</div>
           <div class="speaker-talk">"Carbon dioxide injection into deep aquifers: a geomechanical perspective"</div>
+          <a href="#" class="abstract-link" onclick="openAbstractModal(); return false;">
+            Check the abstract →
+          </a>
         </div>
       </div>
       <div class="keynote-note">
@@ -1148,6 +1235,30 @@
     </div>
   </div>
 
+  <div id="abstract-modal" class="abstract-modal">
+    <div class="abstract-modal-content">
+      <button class="abstract-close" onclick="closeAbstractModal()">×</button>
+
+      <p class="section-label">KC Lecture Abstract </p>
+      <p>
+        Carbon capture and storage (CCS) in deep geological formations is a key strategy for reducing atmospheric CO₂ emissions and mitigating climate change. However, the successful and safe implementation of CO₂ injection into deep aquifers requires a comprehensive understanding of the geomechanical and multiphase flow responses of the subsurface.
+      </p>
+
+      <p>
+        This lecture will explore the pore-scale to reservoir-scale challenges and opportunities associated with CO₂ sequestration, focusing on reservoir integrity, caprock stability, and reactive transport processes. By integrating experimental studies, numerical modelling, and field data, we will examine the complex interactions between fluid injection, pore pressure evolution, two-phase flow, and rock deformation within heterogeneous porous media.
+      </p>
+
+      <p>
+        The discussion will highlight recent advances in understanding and predicting thermo-hydro-mechanical (THM) processes triggered by CO₂ injection. Additionally, we will explore the role of permeability evolution and wettability effects in storage security. The development and evaluation of analytical and computational modelling approaches will be presented as essential tools for reliable risk assessment and process optimization.
+      </p>
+
+      <p>
+        By providing a multiscale perspective, from microstructural effects to large-scale reservoir behaviour, this presentation aims to foster cross-disciplinary discussions and contribute to the development of robust and sustainable CCS solutions, aligning with key challenges in porous media research, geomechanics, and subsurface engineering.
+      </p>
+    </div>
+  </div>
+
+
   <script>
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
@@ -1198,6 +1309,21 @@
       text: "Florian Doster is Professor for Multi-Scale Multi-Phase Flow Modelling in the Institute of GeoEnergy Engineering at Heriot-Watt University and GeoEnergy co- lead at the Global Research Institute for Achieving NetZero and Beyond. His research interests include the study of multi-physics multi-phase flow phenomena in porous media and their appropriate physical and mathematical description across length and time scales. He focuses on applications related to the energy transition in particular CO2 storage and phenomena around flow in fractured porous media. His research is funded by  ACT(BEIS), UKRI (EPSRC, NERC), European Commission, US Department of Energy, the Scottish Energy Technology Partnership, Norwegian Research Council, Foundation CMG, Total, BP, Shell and Petronas, Nuclear Waste Services and the Clean Energy Transition Partnership. His scientific journey has started with a MSc in Physics from Heidelberg University, and continued with a PhD in the International Research Training Group NUPUS at the University of Stuttgart and postdoctoral research at Princeton University and at the University of Bergen before settling at Heriot Watt University in Edinburgh."
     }
   };
+
+  function openAbstractModal() {
+    document.getElementById("abstract-modal").classList.add("active");
+  }
+
+  function closeAbstractModal() {
+    document.getElementById("abstract-modal").classList.remove("active");
+  }
+
+  window.addEventListener("click", function(event) {
+    const modal = document.getElementById("abstract-modal");
+    if (event.target === modal) {
+      closeAbstractModal();
+    }
+  });
 
   function openBio(id) {
     const bio = bios[id];
